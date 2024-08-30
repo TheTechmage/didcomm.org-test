@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ .Site.Title }}</title>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+		<script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-cyan.css">
+<style>
+.flex {
+	display: flex;
+}
+.flex-center-items {
+	justify-content: space-around;
+}
+</style>
+	</head>
+	<body>
+		<header class="w3-container w3-theme w3-padding">
+			<div class="flex flex-center-items">
+				<div class="w3-center">
+					<a
+					hx-get="{{ with .Site.Home.OutputFormats.Get "htmx" }}{{ .Permalink }}{{ end }}"
+					hx-trigger="click"
+					hx-target="#content"
+					hx-push-url="{{ .Site.BaseURL }}"
+					hx-swap="innerHTML"
+					href="{{ .Site.BaseURL }}"
+					>LOGO</a>
+				</div>
+				<div class="w3-center">
+					SEARCH
+				</div>
+				<div class="w3-center">
+					LINKS
+				</div>
+			</div>
+		</header>
+		<div id="content">
+			{{ block "main" . }}
+			<!-- The part of the page that begins to differ between templates -->
+			{{ end }}
+		</div>
+	</body>
+</html>
